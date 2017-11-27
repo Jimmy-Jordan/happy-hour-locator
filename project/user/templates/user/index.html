@@ -1,0 +1,17 @@
+{% extends 'user/_base.html' %}
+
+{% block title %}{% endblock title %}
+{% block style %}{% endblock style %}
+
+{% block header %}{% endblock header %}
+
+{% block main %}
+	<a href="{% url 'user:create' %}">Create</a>
+	<a href="{% url 'user:login' %}">Login</a>
+	{% for user in users %}
+		<p>{{user.username}}</p>
+		<p>{{user.email}}</p>
+	{% endfor %}
+{% endblock main %}
+
+{% block footer %}{% endblock footer %}

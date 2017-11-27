@@ -1,0 +1,20 @@
+{% extends 'user/_base.html' %}
+
+{% block title %}{% endblock title %}
+
+{% block style %}{% endblock style %}
+
+{% block header %}
+	<title>Create</title>
+{% endblock header %}
+
+{% block main %}
+	<p>Create User</p>
+	<form action="{% url 'user:create' %}" method="POST">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit"/>
+	</form>
+{% endblock main %}
+
+{% block footer %}{% endblock footer %}
