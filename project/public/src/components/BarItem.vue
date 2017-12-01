@@ -15,18 +15,6 @@ export default {
 	name: "bar-item",
 	props:{
 		bar: Object
-	},
-	beforeRouteEnter (to, from, next) {
-    // called before the route that renders this component is confirmed.
-    // does NOT have access to `this` component instance,
-    // because it has not been created yet when this guard is called!
-    	bar = DataStore.getters.getBar(parseInt(to.params.id));
-		if (bar){
-			to.params.bar = bar;
-		} else {
-			console.log("error");
-			// next({name: '404'});
-		}
 	}
 };
 </script>

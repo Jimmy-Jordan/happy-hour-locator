@@ -65,6 +65,11 @@ export default {
 		editMode: function(){
 			return this.mode.edit ? "Hide":"Edit";
 		}
-	}	
+	},
+	created: function(){
+		if (!this.bar){
+			this.$set(this, "bar", this.$route.params.bar);
+		}
+	}			
 };
 </script>
