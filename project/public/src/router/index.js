@@ -53,17 +53,18 @@ const router = new VueRouter({
 			// 	"aside": { "template": "<default-navbar></default-navbar>"},
 			// 	"main": { "template": "<bar-item></bar-item>" }
 			// },
-			props: function(route){
-				var bar = DataStore.getters.getBar(parseInt(route.params.id));
-				console.log(bar);
-				if (bar){
-					return { "bar": bar };
-				} else {
-					console.log("error");
-					// next({name: '404'});
-					return {};
-				}
-			}
+			// props: function(route){
+			// 	var bar = DataStore.getters.getBar(parseInt(route.params.id));
+			// 	console.log(bar);
+			// 	if (bar){
+			// 		return { "bar": bar };
+			// 	} else {
+			// 		console.log("error");
+			// 		// next({name: '404'});
+			// 		return {};
+			// 	}
+			// }
+			props: true
 		},
 		{
 			path: '/error',

@@ -20,10 +20,9 @@ export default {
     // called before the route that renders this component is confirmed.
     // does NOT have access to `this` component instance,
     // because it has not been created yet when this guard is called!
-    bar = DataStore.getters.getBar(parseInt(to.params.id));
+    	bar = DataStore.getters.getBar(parseInt(to.params.id));
 		if (bar){
-			return { "bar": bar };
-			
+			to.params.bar = bar;
 		} else {
 			console.log("error");
 			// next({name: '404'});
