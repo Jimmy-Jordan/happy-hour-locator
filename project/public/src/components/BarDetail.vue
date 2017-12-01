@@ -44,7 +44,7 @@
 export default {
 	name: 'bar-detail',
 	props:{
-		bar: Object
+		bar: {type: Object, required: true}
 	},
 	data: function(){
 		return {

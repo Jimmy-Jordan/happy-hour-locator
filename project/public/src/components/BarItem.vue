@@ -14,7 +14,7 @@
 export default {
 	name: "bar-item",
 	props:{
-		bar: Object
+		bar: {type: Object, required: true}
 	}
 };
 </script>
