@@ -46,31 +46,22 @@ const router = new VueRouter({
 		{
 			name: "bar-detail",
 			path: '/bars/:id',
-			name: 'bar',
-			components: 
-			{
-				"header": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
-				"aside": { "template": "<default-navbar></default-navbar>"},
-				"main": { "template": "<bar-detail></bar-detail>" }
-			},
-			props: {"main": true},
-			beforeEnter: function(to, from, next){
-				var bar = DataStore.getters.getBar(parseInt(to.params.id));
+			component: { "template": "<bar-item></bar-item>" },
+			// components: 
+			// {
+			// 	"header": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
+			// 	"aside": { "template": "<default-navbar></default-navbar>"},
+			// 	"main": { "template": "<bar-item></bar-item>" }
+			// },
+			props: function(route){
+				var bar = DataStore.getters.getBar(parseInt(route.params.id));
 				console.log(bar);
 				if (bar){
-					to.params.bar = bar;
-					if (!Object.hasOwnProperty.call(bar, "drinks")){
-						DataStore.dispatch("loadDrinks", {
-							bar: bar
-						}).then(function(){
-							next();
-						});
-					} else {
-						next();
-					}
+					return { "bar": bar };
 				} else {
 					console.log("error");
 					// next({name: '404'});
+					return {};
 				}
 			}
 		},
