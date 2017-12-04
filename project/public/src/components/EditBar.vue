@@ -1,14 +1,19 @@
 <template>
-	<form v-on:submit.prevent="editBar($event, name, location)">
-		<label> Name:
-			<input type="text" name="name" v-model="name">
-		</label>
-		<label> Location:
-			<input type="text" name="location" v-model="location">
-		</label>	
-			<button type="submit">Edit Bar</button>
+	<el-form v-on:submit.prevent="editBar($event, name, location)">
+		
+		<el-form-item label="Name:">
+			<el-input v-model="name"></el-input>
+		</el-form-item>
+		
+		<el-form-item label="Location:">
+			<el-input v-model="location"></el-input>
+		</el-form-item>	
 			
-	</form>
+			<el-button 
+				type="primary" v-on:click="onSubmit($event, name, location)">Submit
+			</el-button>
+			
+	</el-form>
 </template>
 
 
@@ -16,7 +21,7 @@
 export default {
 	name: 'edit-bar',
 	props:{
-		bar: Object
+		bar: {type: Object, required: true}
 	},
 	data: function(){
 		return {
@@ -25,7 +30,7 @@ export default {
 		};
 	},
 	methods: {
-		editBar: function(bar, name, location){
+		onSubmit: function(bar, name, location){
 			this.$store.dispatch("editBar", {
 				bar: this.bar,
 				data: {

@@ -37,6 +37,28 @@
 				Delete
 			</el-button>
 		</el-button-group>
+		
+		<transition-group name="component-fade" mode="in-out">
+			<create-drink 
+				v-if="mode.detail"
+				v-bind:bar="bar"
+				v-bind:key="bar.id"
+			>
+			</create-drink>
+
+			<ul 
+				v-bind:bar="bar"
+				v-bind:key="bar.id"
+			>
+				<li 
+					is="drink-detail"
+					v-for="drink in bar.drinks"
+					v-bind:drink="drink"
+					v-bind:key="drink.id"
+				></li>
+			</ul>
+		</transition-group> 
+
 	</div>
 </template>
 

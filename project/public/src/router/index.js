@@ -101,15 +101,17 @@ const router = new VueRouter({
 	]
 });
 
-router.beforeEach(function(to, from, next){
-	if (DataStore.getters.getBars.length){
-		next();
-	} else {	
-		DataStore.dispatch('loadBars').then(function(){
-			next();
-		});
-	}
-});
+// router.beforeEach(function(to, from, next){
+// 	if (DataStore.getters.getBars.length){
+// 		next();
+// 	} else {	
+// 		DataStore.dispatch('loadBars').then(function(){
+// 			next();
+// 		});
+// 	}
+// });
+
+// Don't need the above anymore?
 
 
 export default router;

@@ -16,6 +16,7 @@
 				v-on:current-change="currentChange"
 			>
 			</el-pagination>
+			<!-- Issue with pagination (maybe) where if you click the bars  tab after flipping through pages, the url resorts to page NaN-->
 		</el-col>
 	</el-row>
 </template>
