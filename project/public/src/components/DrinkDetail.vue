@@ -11,12 +11,15 @@
 			v-bind:drink="drink"
 		>
 		</edit-drink>
-		<button 
+		<el-button 
+			type="primary"
+			size="mini"
+			icon="el-icon-edit"
 			v-bind:key="drink.id"
-			v-on:click="mode.edit = !mode.edit" 
+			v-on:click="mode.edit = !mode.edit"
 		>
 			{{ editMode }}
-		</button>
+		</el-button>
 	</div>
 </template>
 
@@ -25,7 +28,6 @@
 export default {
 	name: 'drink-detail',
 	props:{
-		parent: {type: Object, required: true},
 		drink: {type: Object, required: true}
 	},
 	data: function(){
@@ -37,7 +39,7 @@ export default {
 	},
 	computed: {
 		editMode: function(){
-			return this.mode.edit ? "Hide":"Change Status";
+			return this.mode.edit ? "Hide":"";
 		},
 	}
 	

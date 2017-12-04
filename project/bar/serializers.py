@@ -9,11 +9,6 @@ class DrinkDetailSerializer(serializers.ModelSerializer):
 		slug_field='username'
 	)
 
-
-	updated_at = serializers.DateTimeField(
-		read_only=True,
-	)
-
 	create_vote = serializers.HyperlinkedIdentityField(view_name='bar:drink-votes')
 
 	class Meta:
@@ -23,6 +18,7 @@ class DrinkDetailSerializer(serializers.ModelSerializer):
 			'create_vote', 'id', 'user',
 			'updated_at'
 		]
+		read_only_fields = ('bar','updated_at','id')
 
 class BarDetailSerializer(serializers.ModelSerializer):
 

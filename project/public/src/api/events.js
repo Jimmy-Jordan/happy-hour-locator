@@ -5,6 +5,7 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 
+
 export default {
 	getBars: function(){
 		return axios({
@@ -45,7 +46,6 @@ export default {
 		});
 	},
 	createDrink: function(barId, data){
-		data.status = STATUSES[data.status];
 		return axios({
 			method: 'post',
 			url: '/bars/' + barId + "/drinks",
@@ -53,7 +53,6 @@ export default {
 		});
 	},
 	editDrink: function(drinkId, data){
-		data.status = STATUSES[data.status];
 		return axios({
 			method: 'put',
 			url: '/drinks/' + drinkId,

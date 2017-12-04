@@ -36,11 +36,19 @@
 			>
 				Delete
 			</el-button>
+
+			<el-button 
+				type="primary"
+				size="small"
+				v-bind:key="bar.id"
+				v-on:click="mode.drinks = !mode.drinks"
+			>
+				{{drinkMode}}
+			</el-button>
+
 		</el-button-group>
-		
-		<transition-group name="component-fade" mode="in-out">
 			<create-drink 
-				v-if="mode.detail"
+				v-if="mode.drinks"
 				v-bind:bar="bar"
 				v-bind:key="bar.id"
 			>
@@ -86,13 +94,11 @@ export default {
 	computed: {
 		editMode: function(){
 			return this.mode.edit ? "Hide":"Edit";
+		},
+		drinkMode: function(){
+			return this.mode.drinks ? "Hide":"Add Drink";
 		}
 	},
-	// created: function(){
-	// 	if (!this.bar){
-	// 		this.$set(this, "bar", this.$route.params.bar);
-	// 	}
-	// }		
-	// why don't we need this anymore?	
+
 };
 </script>

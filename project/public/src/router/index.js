@@ -11,8 +11,8 @@ const router = new VueRouter({
 			name: "bars",
 			path: "/",
 			components: {
-				"header": {"template": '<h2 class="align-center">Jimmy Rocks</h2>'},
-				"aside": {"template": "<default-navbar></default-navbar>"},
+				"header": {"template": "<default-navbar></default-navbar>"},
+				// "aside": {"template": '<h2 class="align-center">Jimmy Rocks</h2>'},
 				"main": {"template": "<bar-collection></bar-collection>"}
 			},
 			beforeEnter: function(to, from, next){
@@ -29,8 +29,8 @@ const router = new VueRouter({
 			name: "create-bar",
 			path: "/create-bar",
 			components: {
-				"header": {"template": '<h2 class="align-center">Jimmy Rocks</h2>'},
-				"aside": {"template": "<default-navbar></default-navbar>"},
+				"header": {"template": "<default-navbar></default-navbar>"},
+				// "aside": {"template": '<h2 class="align-center">Jimmy Rocks</h2>'},
 				"main": {"template": "<create-bar></create-bar>"}
 			}
 		},
@@ -38,8 +38,8 @@ const router = new VueRouter({
 			name: "profile",
 			path: "/profile",
 			components: {
-				"header": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
-				"aside": { "template": "<default-navbar></default-navbar>"},
+				"header": { "template": "<default-navbar></default-navbar>"},
+				// "aside": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
 				"main": { "template": "<p>Placeholder</p>" }
 			}
 		},
@@ -48,8 +48,8 @@ const router = new VueRouter({
 			path: '/bars/:id',
 			components: 
 			{
-				"header": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
-				"aside": { "template": "<default-navbar></default-navbar>"},
+				"header": { "template": "<default-navbar></default-navbar>"},
+				// "aside": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
 				"main": { 
 					"template": '<bar-detail :bar="bar"></bar-detail>',
 					"props": {
@@ -60,14 +60,34 @@ const router = new VueRouter({
 					} 
 				}
 			},
+			beforeEnter: function(to, from, next){
+				var __next = function(){
+					var bar = DataStore.getters.getBar(parseInt(to.params.id));
+					if (DataStore.getters.getDrinks(bar.id)){
+						next();
+					} else {	
+						DataStore.dispatch('loadDrinks', {bar: bar}).then(function(){
+							next();
+						});
+					}
+				};
+				if (DataStore.getters.getBars.length){
+					__next();
+				} else {	
+					DataStore.dispatch('loadBars').then(function(){
+						__next();
+					});
+				}
+				
+			},
 			props: {
 				main: function(route){
 					var bar = DataStore.getters.getBar(parseInt(route.params.id));
 					if (bar){
 						return {"bar":bar};
 					} else{
-						return {"bar": {"id": 7}};
-						// Why 7??
+						return {};
+						
 					}
 				}
 

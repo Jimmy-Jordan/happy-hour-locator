@@ -2,11 +2,11 @@
 	<el-menu
 		v-model="defaultActive"
 		:router="!!$router"
-		mode="vertical"
+		mode="horizontal"
 	>
-		<el-menu-item index="/">Bars</el-menu-item>
-		<el-menu-item index="/profile">Profile</el-menu-item>
-		<el-menu-item index="/create-bar">Create Bar</el-menu-item>
+		<el-menu-item index="/?page=1">Bars</el-menu-item>
+		<el-menu-item index="/profile">Map</el-menu-item>
+		<el-menu-item index="/create-bar">Submit Bar</el-menu-item>
 	</el-menu>
 </template>
 
