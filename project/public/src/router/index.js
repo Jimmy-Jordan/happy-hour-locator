@@ -50,27 +50,46 @@ const router = new VueRouter({
 			{
 				"header": { "template": '<h2 class="align-center">Jimmy Rocks</h2>'},
 				"aside": { "template": "<default-navbar></default-navbar>"},
-				"main": { "template": "<bar-detail></bar-detail>" }
-			},
-			props: true,
-			beforeEnter: function(to, from, next){
-				var bar = DataStore.getters.getBar(parseInt(to.params.id));
-				if (bar){
-					to.params.bar = bar;
-					if (!Object.hasOwnProperty.call(bar, "drinks")){
-						DataStore.dispatch("loadDrinks", {
-							bar: bar
-						}).then(function(){
-							next();
-						});
-					} else {
-						next();
-					}
-				} else {
-					console.log("error");
-					// next({name: '404'});
+				"main": { 
+					"template": '<bar-detail :bar="bar"></bar-detail>',
+					"props": {
+						"bar": {
+							"required": true,
+							"type": Object
+						}
+					} 
 				}
-			}
+			},
+			props: {
+				main: function(route){
+					var bar = DataStore.getters.getBar(parseInt(route.params.id));
+					if (bar){
+						return {"bar":bar};
+					} else{
+						return {"bar": {"id": 7}};
+						// Why 7??
+					}
+				}
+
+			},
+			// beforeEnter: function(to, from, next){
+			// 	var bar = DataStore.getters.getBar(parseInt(to.params.id));
+			// 	if (bar){
+			// 		to.params.bar = bar;
+			// 		if (!Object.hasOwnProperty.call(bar, "drinks")){
+			// 			DataStore.dispatch("loadDrinks", {
+			// 				bar: bar
+			// 			}).then(function(){
+			// 				next();
+			// 			});
+			// 		} else {
+			// 			next();
+			// 		}
+			// 	} else {
+			// 		console.log("error");
+			// 		// next({name: '404'});
+			// 	}
+			// }
 		},
 		{
 			path: '/error',

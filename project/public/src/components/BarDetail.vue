@@ -66,10 +66,11 @@ export default {
 			return this.mode.edit ? "Hide":"Edit";
 		}
 	},
-	created: function(){
-		if (!this.bar){
-			this.$set(this, "bar", this.$route.params.bar);
-		}
-	}			
+	// created: function(){
+	// 	if (!this.bar){
+	// 		this.$set(this, "bar", this.$route.params.bar);
+	// 	}
+	// }		
+	// why don't we need this anymore?	
 };
 </script>
